@@ -56,9 +56,11 @@ public class WifiDao {
                 int start = 0;
                 int end = 999;
                 int cnt = 0;
+                int r = 0;
+                int total = 0;
+                boolean flag = true;
 
-
-
+                while(flag) {
                     baseDto = gsonApi.parse(start, end);
                     for (int i = 0; i < 999; i++) {
                         pstmt.setString(1, baseDto.getTbPublicWifiInfo().getRow().get(i).getX_SWIFI_MGR_NO());
@@ -77,17 +79,23 @@ public class WifiDao {
                         pstmt.setDouble(14, baseDto.getTbPublicWifiInfo().getRow().get(i).getLNT());
                         pstmt.setDouble(15, baseDto.getTbPublicWifiInfo().getRow().get(i).getLAT());
                         pstmt.setString(16, baseDto.getTbPublicWifiInfo().getRow().get(i).getWORK_DTTM());
-                        cnt ++;
+                        cnt++;
+                        r += pstmt.executeUpdate();
+                        pstmt.clearParameters();
 
-                        int total = Integer.parseInt(baseDto.getTbPublicWifiInfo().getList_total_count());
-                        System.out.println(cnt);
+                        total = Integer.parseInt(baseDto.getTbPublicWifiInfo().getList_total_count());
+
+                        if(cnt==total){
+                            flag = false;
+                            break;
+                        }
+
+                    }
+
 
                 }
-
-
-
-
-
+                System.out.println(total);
+                System.out.println(cnt);
 
 
             } catch (IOException e) {
@@ -98,8 +106,7 @@ public class WifiDao {
 
             System.out.println("잘 실행됨");
 
-            int r = pstmt.executeUpdate();
-            System.out.println("변경된 row = " + r);
+
 
 
 
