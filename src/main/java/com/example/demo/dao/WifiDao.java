@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.dao;
 
 
 
@@ -84,37 +84,21 @@ public class WifiDao {
                         pstmt.clearParameters();
 
                         total = Integer.parseInt(baseDto.getTbPublicWifiInfo().getList_total_count());
-
                         if(cnt==total){
                             flag = false;
                             break;
                         }
-
                     }
-
-
                 }
-                System.out.println(total);
-                System.out.println(cnt);
-
-
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            
-
-
             System.out.println("잘 실행됨");
-
-
-
-
 
             /*
             CUD (create, update, delete)는 excuteUpdate(sql) 함수를 사용하고 int 값을 반환한다.
             R(read)은 excuteQuery(sql) 함수를 사용하고 ResultSet 객체를 반환한다.
              */
-
 
         } catch (SQLException e) {
 
