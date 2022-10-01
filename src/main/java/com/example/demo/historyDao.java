@@ -6,7 +6,7 @@ package com.example.demo;
 
 import java.sql.*;
 
-public class JDBC {
+public class historyDao {
     public static void main(String[] args) {
         //데이터베이스와 연결하는 객체
         Connection con = null;
