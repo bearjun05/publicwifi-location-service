@@ -7,7 +7,7 @@ import java.net.URLEncoder;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class Api {
+public class JsonData {
 
     public static String run (int start, int end) throws IOException {
 
