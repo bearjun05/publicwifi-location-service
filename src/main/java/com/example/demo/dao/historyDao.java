@@ -20,9 +20,9 @@ public class historyDao {
         String driver = "com.mysql.jdbc.Driver";
 
         // 2. 데이터베이스에 연결하기 위한 정보
-        String url = "jdbc:mysql://localhost:3306/wifi";     // 연결문자열, localhost - 127.0.0.1
-        String user = "root";                                   // 데이터베이스 ID
-        String pw = "coh0303030";                                     // 데이터베이스 PW
+        String url = "jdbc:mysql://localhost:3306/wifidb";     // 연결문자열, localhost - 127.0.0.1
+        String user = "wifiuser";                                   // 데이터베이스 ID
+        String pw = "1234";                                     // 데이터베이스 PW
 
 
         try {

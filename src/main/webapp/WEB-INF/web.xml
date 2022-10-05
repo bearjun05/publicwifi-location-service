@@ -6,7 +6,7 @@
     
 <!--    <servlet>-->
 <!--        <servlet-name>name</servlet-name>-->
-<!--        <servlet-class>com.example.demo.controller.DataLoadController</servlet-class>-->
+<!--        <servlet-class>com.example.demo.controller.WifiController</servlet-class>-->
 <!--    </servlet>-->
 <!--    <servlet-mapping>-->
 <!--        <servlet-name>name</servlet-name>-->

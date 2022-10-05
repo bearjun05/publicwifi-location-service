@@ -11,17 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/data-load.do")
-public class DataLoadController extends HttpServlet {
+@WebServlet("/wifi.do")
+public class WifiController extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServletException {
 
         MainDto mainDto = new MainDto();
         WifiDao wifiDao = new WifiDao();
-        String totalCount = mainDto.getList_total_count();
-        wifiDao.save();
-        //request.setAttribute("totalCount", mainDto.getList_total_count());
+        wifiDao.delete();
+        String totalCount = wifiDao.save();
+
+
+        request.setAttribute("totalCount", totalCount);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/dataLoad.jsp");
         requestDispatcher.forward(request, response);
     }

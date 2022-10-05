@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>개의 정보를 저장하였습니다.</h1>
+<h1>${totalCount}개의 정보를 저장하였습니다.</h1> <br>
+<a href="/index.jsp">홈 으로 가기</a>
 </body>
 </html>

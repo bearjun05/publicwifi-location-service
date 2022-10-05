@@ -9,21 +9,22 @@
 </head>
 <body>
 <h1>와이파이 정보 구하기</h1>
-<a href="">홈</a>
-<a href="">위치 히스토리 목록</a>
+<a href="index.jsp">홈</a>
+<a href="WEB-INF/history.jsp">위치 히스토리 목록</a>
 <a href="data-load.do">Open API 와이파이 정보 가져오기</a>
 <br><br>
 
 <div>
-    <label for="latt">LAT:</label>
-    <input type="text" id="latt" value="" >
+    <label for="latid">LAT:</label>
+    <input type="text" id="latid" name="latname" value="" >
 
-    <label for="lntt">, LNT:</label>
-    <input type="text" id="lntt">
 
-    <input type="button" value="내 위치 가져오기" onclick="navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError)">
+    <label for="lntid">, LNT:</label>
+    <input type="text" id="lntid" name="lntname" value="">
+
+
+    <input type="button" value="내 위치 가져오기" onclick="getLocation()">
     <input type="submit" value="근처 WIPI 정보 보기">
-
 </div>
 
 <div>
@@ -50,17 +51,38 @@
     </table>
 </div>
 
+<%--<script>--%>
+<%--    function onGeoOk(position){--%>
+<%--        const lat = position.coords.latitude;--%>
+<%--        const lnt = position.coords.longitude;--%>
+<%--        document.getElementById("latt").innerHTML=lat;--%>
+<%--        document.getElementById("lntt").innerHTML=lnt;--%>
+<%--        console.log("You live in", lat, lng);--%>
+<%--    }--%>
+<%--    function onGeoError(){--%>
+<%--        alert("Can't find you. No weather for you.");--%>
+<%--    }--%>
+<%--</script>--%>
+
 <script>
-    function onGeoOk(position){
-        const lat = position.coords.latitude;
-        const lnt = position.coords.longitude;
-        document.getElementById("latt").innerHTML=lat;
-        document.getElementById("lntt").innerHTML=lnt;
-        console.log("You live in", lat, lng);
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                alert(position.coords.latitude + ' ' + position.coords.longitude);
+                $('input[name=latname]').attr('value',position.coords.latitude);
+                $('input[name=lntname]').attr('value',position.coords.longitude);
+            }, function (error) {
+                console.error(error);
+            }, {
+                enableHighAccuracy: false,
+                maximumAge: 0,
+                timeout: Infinity
+            });
+        } else {
+            alert('GPS를 지원하지 않습니다');
+        }
     }
-    function onGeoError(){
-        alert("Can't find you. No weather for you.");
-    }
+
 </script>
 
 </body>
