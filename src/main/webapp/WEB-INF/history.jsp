@@ -13,7 +13,7 @@
 <body>
     <h1>위치 히스토리 목록</h1>
     <a href="/index.jsp">홈</a>
-    <a href="">위치 히스토리 목록</a>
+    <a href="history.do">위치 히스토리 목록</a>
     <a href="data-load.do">Open API 와이파이 정보 가져오기</a>
 
     <div>

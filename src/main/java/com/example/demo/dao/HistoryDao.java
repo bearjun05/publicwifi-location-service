@@ -6,8 +6,8 @@ package com.example.demo.dao;
 
 import java.sql.*;
 
-public class historyDao {
-    public static void main(String[] args) {
+public class HistoryDao {
+    public void save() {
         //데이터베이스와 연결하는 객체
         Connection con = null;
         PreparedStatement pstmt = null;

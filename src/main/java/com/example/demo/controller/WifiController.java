@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.WifiDao;
-import com.example.demo.dto.MainDto;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +16,6 @@ public class WifiController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServletException {
 
-        MainDto mainDto = new MainDto();
         WifiDao wifiDao = new WifiDao();
         wifiDao.delete();
         String totalCount = wifiDao.save();
