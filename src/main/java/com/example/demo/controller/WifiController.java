@@ -25,4 +25,6 @@ public class WifiController extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/dataLoad.jsp");
         requestDispatcher.forward(request, response);
     }
+
+
 }

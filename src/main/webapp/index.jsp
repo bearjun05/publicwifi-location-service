@@ -6,25 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!--  <script src="./main.js"></script> -->
+
+    <style>
+
+        table {
+            background-color: #008fff;
+            color: white;
+            border-collapse: collapse;
+            border-color: white;
+            margin: 15px;
+        }
+
+        td{
+            padding: 15px;
+        }
+    </style>
 </head>
 <body>
 <h1>와이파이 정보 구하기</h1>
 <a href="index.jsp">홈</a>
 <a href="history.do">위치 히스토리 목록</a>
-<a href="data-load.do">Open API 와이파이 정보 가져오기</a>
+<a href="wifi.do">Open API 와이파이 정보 가져오기</a>
 <br><br>
 
 <div>
-    <label for="latid">LAT:</label>
-    <input type="text" id="latid" name="latname" value="" >
+    <form action="location.do" method="post">
+        <label for="latid">LAT:</label>
+        <input type="text" id="latid" name="latname" value="${latname}">
 
 
-    <label for="lntid">, LNT:</label>
-    <input type="text" id="lntid" name="lntname" value="">
+        <label for="lntid">, LNT:</label>
+        <input type="text" id="lntid" name="lntname" value="${lntname}">
 
 
-    <input type="button" value="내 위치 가져오기" onclick="getLocation()">
-    <input type="submit" value="근처 WIPI 정보 보기">
+        <input type="button" value="내 위치 가져오기" onclick="getLocation()">
+        <input type="submit" value="근처 WIPI 정보 보기" >
+    </form>
 </div>
 
 <div>
@@ -69,11 +86,21 @@
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 alert(position.coords.latitude + ' ' + position.coords.longitude);
-                $('input[name=latname]').attr('value',position.coords.latitude);
-                $('input[name=lntname]').attr('value',position.coords.longitude);
-            }, function (error) {
+
+                // $('input[name=latname]').attr('value',position.coords.latitude);
+                // $('input[name=lntname]').attr('value',position.coords.longitude);
+                var lat = position.coords.latitude;
+                    document.getElementById("latid").value = lat ;
+                var lnt = position.coords.longitude;
+                    document.getElementById("lntid").value = lnt;
+
+
+
+            },
+                function (error) {
                 console.error(error);
-            }, {
+            },
+                {
                 enableHighAccuracy: false,
                 maximumAge: 0,
                 timeout: Infinity
