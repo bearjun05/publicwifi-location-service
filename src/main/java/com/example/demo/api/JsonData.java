@@ -11,6 +11,8 @@ public class JsonData {
 
     public static String run (int start, int end) throws IOException {
 
+        //싱글톤
+
         StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088"); /*URL*/
         urlBuilder.append("/" +  URLEncoder.encode("744e53725570726f38346946446961","UTF-8") ); /*인증키 (sample사용시에는 호출시 제한됩니다.)*/
         urlBuilder.append("/" +  URLEncoder.encode("json","UTF-8") ); /*요청파일타입 (xml,xmlf,xls,json) */

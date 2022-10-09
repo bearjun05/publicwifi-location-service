@@ -22,6 +22,7 @@ public class WifiController extends HttpServlet {
 
 
         request.setAttribute("totalCount", totalCount);
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/dataLoad.jsp");
         requestDispatcher.forward(request, response);
     }

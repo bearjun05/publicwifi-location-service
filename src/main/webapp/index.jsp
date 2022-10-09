@@ -21,7 +21,40 @@
             padding: 15px;
         }
     </style>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                        alert(position.coords.latitude + ' ' + position.coords.longitude);
+
+                        // $('input[name=latname]').attr('value',position.coords.latitude);
+                        // $('input[name=lntname]').attr('value',position.coords.longitude);
+                        var lat = position.coords.latitude;
+                        document.getElementById("latid").value = lat ;
+                        var lnt = position.coords.longitude;
+                        document.getElementById("lntid").value = lnt;
+
+
+
+                    },
+                    function (error) {
+                        console.error(error);
+                    },
+                    {
+                        enableHighAccuracy: false,
+                        maximumAge: 0,
+                        timeout: Infinity
+                    });
+            } else {
+                alert('GPS를 지원하지 않습니다');
+            }
+        }
+
+    </script>
+
 </head>
+
 <body>
 <h1>와이파이 정보 구하기</h1>
 <a href="index.jsp">홈</a>
@@ -67,50 +100,5 @@
         </tr>
     </table>
 </div>
-
-<%--<script>--%>
-<%--    function onGeoOk(position){--%>
-<%--        const lat = position.coords.latitude;--%>
-<%--        const lnt = position.coords.longitude;--%>
-<%--        document.getElementById("latt").innerHTML=lat;--%>
-<%--        document.getElementById("lntt").innerHTML=lnt;--%>
-<%--        console.log("You live in", lat, lng);--%>
-<%--    }--%>
-<%--    function onGeoError(){--%>
-<%--        alert("Can't find you. No weather for you.");--%>
-<%--    }--%>
-<%--</script>--%>
-
-<script>
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                alert(position.coords.latitude + ' ' + position.coords.longitude);
-
-                // $('input[name=latname]').attr('value',position.coords.latitude);
-                // $('input[name=lntname]').attr('value',position.coords.longitude);
-                var lat = position.coords.latitude;
-                    document.getElementById("latid").value = lat ;
-                var lnt = position.coords.longitude;
-                    document.getElementById("lntid").value = lnt;
-
-
-
-            },
-                function (error) {
-                console.error(error);
-            },
-                {
-                enableHighAccuracy: false,
-                maximumAge: 0,
-                timeout: Infinity
-            });
-        } else {
-            alert('GPS를 지원하지 않습니다');
-        }
-    }
-
-</script>
-
 </body>
 </html>
