@@ -1,12 +1,15 @@
 package com.example.demo.test;
 
+import com.example.demo.api.JsonData;
 import com.example.demo.dao.WifiDao;
 
-public class WifiTest {
-    public static void main(String[] args) {
+import java.io.IOException;
 
-        WifiDao wifiDao = new WifiDao();
-        wifiDao.delete();
+public class WifiTest {
+    public static void main(String[] args) throws IOException {
+
+
+        System.out.println(JsonData.run(1, 500));
 
     }
 }

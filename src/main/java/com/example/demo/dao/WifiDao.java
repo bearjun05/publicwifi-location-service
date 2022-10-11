@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import com.example.demo.api.DistanceApi;
 import com.example.demo.api.GsonApi;
 import com.example.demo.controller.LocationController;
 import com.example.demo.dto.BaseDto;
@@ -207,7 +208,7 @@ public class WifiDao {
         }
     }
 
-    public void find () {
+    public List<Wifi> find (double lat, double lnt) {
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -217,6 +218,7 @@ public class WifiDao {
         List<Wifi> list = new ArrayList<>();
 
         LocationController locationController = new LocationController();
+        DistanceApi distanceApi = new DistanceApi();
 
         double distance = 0;
 
@@ -238,7 +240,12 @@ public class WifiDao {
 
             System.out.println("[Database 연결 성공]");
 
-            String sql = "select * from wifi limit 10";
+            String sql = "select * " +
+                    ", format((6371 * acos(cos(radians(" + lat + ")) * cos(radians(lat)) * cos(radians(lnt) - radians(" + lnt + ")) " +
+                    "+ sin(radians(" + lat + ")) * sin(radians(lat)))), 4) as distance " +
+                    " from wifi " +
+                    " order by distance , X_SWIFI_MGR_NO" +
+                    " limit 20";
 
             pstm = con.prepareStatement(sql);
             System.out.println("Sql 전달 성공");
@@ -267,8 +274,14 @@ public class WifiDao {
                 double LAT = rs.getDouble("LAT");
                 String WORK_DTTM = rs.getString("WORK_DTTM");
 
-                distance = Math.sqrt(Math.pow(Math.max(LNT, locationController.lntname) - Math.min(LNT, locationController.lntname), 2) -
-                        Math.pow(Math.max(LAT, locationController.latname) - Math.min(LAT, locationController.latname), 2));
+
+                System.out.println("+++++++++++++++++++++");
+                System.out.println(LNT);
+                System.out.println(LAT);
+
+
+                distance = distanceApi.distance(locationController.latname,
+                        locationController.lntname, LAT, LNT);
 
 
                 System.out.println(X_SWIFI_MGR_NO + " " +distance + " ");
@@ -320,6 +333,9 @@ public class WifiDao {
             }
 
         }
+
+
+        return list;
     }
 
 

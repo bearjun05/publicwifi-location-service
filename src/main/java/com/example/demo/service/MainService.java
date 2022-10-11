@@ -7,12 +7,12 @@ public class MainService {
     public static void main(String[] args) {
 
         LocationController locationController = new LocationController();
-        double a = locationController.latname;
-        double b = locationController.lntname;
-
-        System.out.println(a);
+        double lat = locationController.latname;
+        double lnt = locationController.lntname;
 
         WifiDao wifiDao = new WifiDao();
-        wifiDao.find();
+        wifiDao.find(lat, lnt);
+
+
     }
 }
